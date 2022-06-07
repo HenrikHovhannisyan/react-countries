@@ -1,9 +1,15 @@
-import './App.css';
-import Header from './components/header';
+import "./App.css";
+import Footer from "./components/leyout/footer";
+import Header from "./components/leyout/header";
+import Main from "./components/main";
 
 function App() {
   return (
-    <Header />
+    <>
+      <Header />
+      <Main />
+      <Footer />
+    </>
   );
 }
 
