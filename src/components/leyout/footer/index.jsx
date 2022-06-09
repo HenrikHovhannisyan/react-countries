@@ -31,7 +31,7 @@ function Footer() {
                 aria-label="mailbox folders"
               >
                 <ListItem button>
-                  <ListItemText primary="Products" />
+                  <ListItemText primary="List" />
                 </ListItem>
                 <Divider />
                 <ListItem button divider>
