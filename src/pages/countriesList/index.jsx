@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import Button from "@mui/material/Button";
 import { fechCountries } from "../../components/api/fechCountries";
+import { Link } from "react-router-dom";
 
 const CountriesList = () => {
   const [countries, setCountries] = useState([]);
@@ -35,35 +36,43 @@ const CountriesList = () => {
               countries.slice(0, show).map((element, index) => (
                 <Grid item xs={2} sm={4} md={4} key={index}>
                   <Card sx={{ maxWidth: 345 }}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        image={`https://countryflagsapi.com/png/${element.iso2}`}
-                        alt="green iguana"
-                        className="country_flag"
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {element.country}
-                        </Typography>
-                        <h4>iso2 - {element.iso2}</h4>
-                        <h4>iso3 - {element.iso3}</h4>
-                        <Typography
-                          variant="body2"
-                          color="text.secondary"
-                          className="cities"
-                        >
-                          <b>Cities</b> -{" "}
-                          {element.cities.map((item) => item + ", ")}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
+                    <Link to={`/single-country/${element.country}`}>
+                      <CardActionArea>
+                        <CardMedia
+                          component="img"
+                          image={`https://countryflagsapi.com/png/${element.iso2}`}
+                          alt="green iguana"
+                          className="country_flag"
+                        />
+                        <CardContent>
+                          <Typography gutterBottom variant="h5" component="div">
+                            {element.country}
+                          </Typography>
+                          <h4>iso2 - {element.iso2}</h4>
+                          <h4>iso3 - {element.iso3}</h4>
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            className="cities"
+                          >
+                            <b>Cities</b> -{" "}
+                            {element.cities.map((item) => item + ", ")}
+                          </Typography>
+                        </CardContent>
+                      </CardActionArea>
+                    </Link>
                   </Card>
                 </Grid>
               ))}
           </Grid>
           <Box textAlign="center" mt={5}>
-            <Button variant="contained" color="success" onClick={() => setShow(show + 6)}>Show All</Button>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={() => setShow(show + 6)}
+            >
+              Show All
+            </Button>
           </Box>
         </Box>
       </Container>
