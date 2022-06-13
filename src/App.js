@@ -4,7 +4,6 @@ import "./App.css";
 import Footer from "./components/leyout/footer";
 import Header from "./components/leyout/header";
 import Main from "./components/main";
-import CountriesList from "./pages/countriesList";
 
 function App() {
   return (

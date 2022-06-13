@@ -3,3 +3,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.country_flag {
+    height: 205px;
+    object-fit: contain !important;
+}

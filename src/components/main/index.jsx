@@ -1,3 +1,4 @@
+import "./main.scss";
 import React, { useEffect, useState } from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -9,7 +10,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import "./main.scss";
 import { fechCountries } from "../api/fechCountries";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -45,6 +45,7 @@ const Main = () => {
                       component="img"
                       image={`https://countryflagsapi.com/png/${element.iso2}`}
                       alt="green iguana"
+                      className="country_flag"
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">
