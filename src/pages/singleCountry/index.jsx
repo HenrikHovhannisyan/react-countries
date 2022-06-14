@@ -18,35 +18,38 @@ const SingleCountry = () => {
   useEffect(() => {
     singleCountry(countryName).then((res) => setCountry(res[0]));
   }, []);
-
-  return (
-    <>
-      <Header />
-      {country.name && (
-        <Container maxWidth="xl" sx={{ minHeight: "65vh" }}>
-          <Card sx={{ maxWidth: 345, mx: "auto", mt: 5, mb: 5 }}>
-            <CardMedia
-              component="img"
-              image={country.flags.png}
-              alt="Country Flug"
-            />
-            <CardMedia
-              component="img"
-              image={country.coatOfArms.png}
-              alt="Country Flug"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Info of {country.name.common}
-              </Typography>
-              <SingleCountryList list={country} />
-            </CardContent>
-          </Card>
-        </Container>
-      )}
-      <Footer />
-    </>
-  );
+  if (!country.name) {
+    return <h1>Loading...</h1>;
+  } else {
+    return (
+      <>
+        <Header />
+        {country.name && (
+          <Container maxWidth="xl" sx={{ minHeight: "65vh" }}>
+            <Card sx={{ maxWidth: 345, mx: "auto", mt: 5, mb: 5 }}>
+              <CardMedia
+                component="img"
+                image={country.flags.png}
+                alt="Country Flug"
+              />
+              <CardMedia
+                component="img"
+                image={country.coatOfArms.png}
+                alt="Country Flug"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Info of {country.name.common}
+                </Typography>
+                <SingleCountryList list={country} />
+              </CardContent>
+            </Card>
+          </Container>
+        )}
+        <Footer />
+      </>
+    );
+  }
 };
 
 export default SingleCountry;
