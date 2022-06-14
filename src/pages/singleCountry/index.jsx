@@ -10,6 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { singleCountry } from "../../components/api/singleCountry";
 import SingleCountryList from "./singleCountryList";
+import Loading from "../loading";
 
 const SingleCountry = () => {
   const [country, setCountry] = useState([]);
@@ -19,7 +20,7 @@ const SingleCountry = () => {
     singleCountry(countryName).then((res) => setCountry(res[0]));
   }, []);
   if (!country.name) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   } else {
     return (
       <>

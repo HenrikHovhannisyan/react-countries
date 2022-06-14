@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import { fechCountries } from "../../components/api/fechCountries";
 import CountriesSearch from "./countriesSearch ";
 import CardInfo from "./cardInfo";
+import Loading from "../loading";
 
 const CountriesList = () => {
   const [countries, setCountries] = useState([]);
@@ -24,7 +25,7 @@ const CountriesList = () => {
   };
 
   if (!countries.length) {
-    return <div>Loading...</div>;
+    return <Loading />;
   } else {
     return (
       <>
