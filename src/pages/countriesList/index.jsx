@@ -15,6 +15,7 @@ const CountriesList = () => {
   const [countries, setCountries] = useState([]);
   const [show, setShow] = useState(6);
   const [changeValue, setChangeValue] = useState("");
+  let count = [];
 
   useEffect(() => {
     fechCountries().then((res) => setCountries(res.data));
@@ -46,19 +47,22 @@ const CountriesList = () => {
                   .filter((item) => {
                     return item.country.toLowerCase().includes(changeValue);
                   })
-                  .map((element, index) => (
-                    <CardInfo countryInfo={element} key={index} />
-                  ))
+                  .map((element, index) => {
+                    count.push(element);
+                    return <CardInfo countryInfo={element} key={index} />;
+                  })
                   .slice(0, show)}
             </Grid>
             <Box textAlign="center" mt={5}>
-              <Button
-                variant="contained"
-                color="success"
-                onClick={() => setShow(show + 6)}
-              >
-                Show All
-              </Button>
+              {count.length > show ? (
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() => setShow(show + 6)}
+                >
+                  Show All
+                </Button>
+              ) : null}
             </Box>
           </Box>
         </Container>
