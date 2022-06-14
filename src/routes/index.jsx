@@ -11,7 +11,7 @@ import SingleCountry from "../pages/singleCountry";
       <Routes>
         <Route path="/" element={<App/>} />
         <Route path="/countries-list" element={<CountriesList />} />
-        <Route path="/single-country/:country" element={<SingleCountry />} />
+        <Route path="/single-country/:countryName" element={<SingleCountry />} />
       </Routes>
     </BrowserRouter>
   );

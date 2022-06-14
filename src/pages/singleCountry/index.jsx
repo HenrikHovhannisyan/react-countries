@@ -1,39 +1,49 @@
 import "./singleCountry.scss";
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import Header from "../../components/leyout/header";
 import Footer from "../../components/leyout/footer";
 import { Container } from "@mui/system";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { singleCountry } from "../../components/api/singleCountry";
+import SingleCountryList from "./singleCountryList";
 
 const SingleCountry = () => {
-  const { country } = useParams();
+  const [country, setCountry] = useState([]);
+  const { countryName } = useParams();
+
+  useEffect(() => {
+    singleCountry(countryName).then((res) => setCountry(res[0]));
+  }, []);
 
   return (
     <>
       <Header />
-      <Container maxWidth="xl" sx={{minHeight: '65vh'}}>
-        <Card sx={{ maxWidth: 345, mx: "auto", mt: 5, mb: 5 }}>
+      {country.name && (
+        <Container maxWidth="xl" sx={{ minHeight: "65vh" }}>
+          <Card sx={{ maxWidth: 345, mx: "auto", mt: 5, mb: 5 }}>
             <CardMedia
               component="img"
-              height="140"
-              image={`https://countryflagsapi.com/png/${country}`}
-              alt="green iguana"
+              image={country.flags.png}
+              alt="Country Flug"
+            />
+            <CardMedia
+              component="img"
+              image={country.coatOfArms.png}
+              alt="Country Flug"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {country}
+                Info of {country.name.common}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
+              <SingleCountryList list={country} />
             </CardContent>
-        </Card>
-      </Container>
+          </Card>
+        </Container>
+      )}
       <Footer />
     </>
   );
