@@ -4,19 +4,20 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 import "./footer.scss";
+import { Link } from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 
 function Footer() {
   return (
@@ -31,11 +32,15 @@ function Footer() {
                 aria-label="mailbox folders"
               >
                 <ListItem button>
-                  <ListItemText primary="List" />
+                  <Link to={"/"}>
+                    <ListItemText primary="Home" />
+                  </Link>
                 </ListItem>
                 <Divider />
                 <ListItem button divider>
-                  <ListItemText primary="Pricing" />
+                  <Link to={"/countries-list"}>
+                    <ListItemText primary="Countries List" />
+                  </Link>
                 </ListItem>
                 <ListItem button>
                   <ListItemText primary="Blog" />
