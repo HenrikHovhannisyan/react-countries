@@ -10,7 +10,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { singleCountry } from "../../components/api/singleCountry";
 import SingleCountryList from "./singleCountryList";
-import Loading from "../loading";
+import Loading from "../../components/loading";
 
 const SingleCountry = () => {
   const [country, setCountry] = useState([]);

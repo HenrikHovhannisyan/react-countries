@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import { fechCountries } from "../../components/api/fechCountries";
 import CountriesSearch from "./countriesSearch ";
 import CardInfo from "./cardInfo";
-import Loading from "../loading";
+import Loading from "../../components/loading";
 
 const CountriesList = () => {
   const [countries, setCountries] = useState([]);
@@ -30,7 +30,7 @@ const CountriesList = () => {
   } else {
     return (
       <>
-        <Header />
+        <Header/>
         <Container maxWidth="xl">
           <CountriesSearch
             searchFun={changeHendler}
@@ -66,7 +66,7 @@ const CountriesList = () => {
             </Box>
           </Box>
         </Container>
-        <Footer />
+        <Footer/>
       </>
     );
   }

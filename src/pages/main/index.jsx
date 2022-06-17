@@ -10,9 +10,9 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import { fechCountries } from "../api/fechCountries";
+import { fechCountries } from "../../components/api/fechCountries";
 import { Link } from "react-router-dom";
-import Loading from "../../pages/loading";
+import Loading from "../../components/loading";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",

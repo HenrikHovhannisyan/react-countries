@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import FlagCircleIcon from '@mui/icons-material/FlagCircle';
+import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import { Link } from "react-router-dom";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -120,7 +120,16 @@ const Header = () => {
               Countries List
             </Link>
           </Box>
-
+          <Box sx={{ mr: 1 }}>
+            <Link to={"/login"} className="nav_link">
+              Login
+            </Link>
+          </Box>
+          <Box sx={{ mr: 1 }}>
+            <Link to={"/registration"} className="nav_link">
+              Registration
+            </Link>
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
