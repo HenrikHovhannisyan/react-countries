@@ -33,7 +33,7 @@ const Registration = () => {
           sx={{ border: 1, borderColor: "#282828", borderRadius: 1 }}
           textAlign={"center"}
           p={5}
-          m={20}
+          m={5}
           mx={"auto"}
           maxWidth={500}
         >

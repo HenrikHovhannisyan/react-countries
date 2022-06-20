@@ -1,9 +1,9 @@
 import "./login.scss";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/leyout/header";
 import Footer from "../../components/leyout/footer";
 import { Container } from "@mui/system";
-import { Box } from "@mui/material";
+import { Alert, Box } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -24,7 +24,81 @@ const ValidationTextField = styled(TextField)({
   },
 });
 
+const useValidation = (value, validations) => {
+  const [isEmpaty, setEmpaty] = useState(true);
+  const [minLengthError, setMinLengthError] = useState(false);
+  const [maxLengthError, setMaxLengthError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [inputValid, setInputValid] = useState(false);
+
+  useEffect(() => {
+    for (const validation in validations) {
+      switch (validation) {
+        case "minLength":
+          value.length < validations[validation]
+            ? setMinLengthError(true)
+            : setMinLengthError(false);
+          break;
+        case "maxLength":
+          value.length > validations[validation]
+            ? setMaxLengthError(true)
+            : setMaxLengthError(false);
+          break;
+        case "isEmpty":
+          value ? setEmpaty(false) : setEmpaty(true);
+          break;
+        case "isEmail":
+          const re =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          re.test(String(value).toLowerCase())
+            ? setEmailError(false)
+            : setEmailError(true);
+          break;
+      }
+    }
+  }, [value]);
+
+  useEffect(() => {
+    isEmpaty || maxLengthError || maxLengthError || emailError
+      ? setInputValid(false)
+      : setInputValid(true);
+  }, [isEmpaty, maxLengthError, minLengthError, emailError]);
+
+  return {
+    isEmpaty,
+    minLengthError,
+    maxLengthError,
+    emailError,
+    inputValid,
+  };
+};
+
+const useInput = (initialValue, validations) => {
+  const [value, setValue] = useState(initialValue);
+  const [isDirty, setDirty] = useState(false);
+  const valid = useValidation(value, validations);
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const onBlur = (e) => {
+    setDirty(true);
+  };
+
+  return {
+    value,
+    onChange,
+    onBlur,
+    isDirty,
+    ...valid,
+  };
+};
+
 const Login = () => {
+  const mail = useInput("", { isEmpty: true, minLength: 3, isEmail: true });
+  const pass = useInput("", { isEmpty: true, minLength: 5, maxLength: 8 });
+
   return (
     <>
       <Header />
@@ -37,27 +111,62 @@ const Login = () => {
           mx={"auto"}
           maxWidth={500}
         >
-          <h2>Login</h2>
           <form>
+            <h2>Login</h2>
             <Box mt={5} mb={5}>
+              {mail.isDirty && mail.isEmpaty && (
+                <Alert severity="error" sx={{ marginBottom: 0.5 }}>
+                  The field cannot be empty
+                </Alert>
+              )}
+              {mail.isDirty && mail.minLengthError && (
+                <Alert severity="error" sx={{ marginBottom: 0.5 }}>
+                  Incorrect length
+                </Alert>
+              )}
+              {mail.isDirty && mail.emailError && (
+                <Alert severity="error" sx={{ marginBottom: 0.5 }}>
+                  Incorrect email
+                </Alert>
+              )}
               <ValidationTextField
+                onChange={(e) => mail.onChange(e)}
+                onBlur={(e) => mail.onBlur(e)}
+                defaultValue={mail.value}
                 name="email"
+                type="text"
                 label="Email"
                 required
                 variant="outlined"
-                defaultValue=""
                 placeholder="test@gmail.com"
                 fullWidth
               />
             </Box>
             <Box mt={5} mb={5}>
+              {pass.isDirty && pass.isEmpaty && (
+                <Alert severity="error" sx={{ marginBottom: 0.5 }}>
+                  The field cannot be empty
+                </Alert>
+              )}
+              {pass.isDirty && pass.minLengthError && (
+                <Alert severity="error" sx={{ marginBottom: 0.5 }}>
+                  Incorrect length
+                </Alert>
+              )}
+              {pass.isDirty && pass.maxLengthError && (
+                <Alert severity="error" sx={{ marginBottom: 0.5 }}>
+                  Too long password
+                </Alert>
+              )}
               <ValidationTextField
+                onChange={(e) => pass.onChange(e)}
+                onBlur={(e) => pass.onBlur(e)}
+                defaultValue={pass.value}
                 name="password"
                 type="password"
                 label="Password"
                 required
                 variant="outlined"
-                defaultValue=""
                 placeholder="Password"
                 fullWidth
               />
@@ -72,7 +181,12 @@ const Login = () => {
               <Link to={"/registration"} style={{ color: "tomato" }}>
                 Don't have an asunt?
               </Link>
-              <Button variant="contained" color="success">
+              <Button
+                disabled={!mail.inputValid || !pass.inputValid}
+                variant="contained"
+                type="submit"
+                color="success"
+              >
                 Login
               </Button>
             </Box>

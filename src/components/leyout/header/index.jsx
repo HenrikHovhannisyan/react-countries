@@ -12,7 +12,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -116,24 +116,25 @@ const Header = () => {
             Countries
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Link to={"/countries-list"} className="nav_link">
+            <NavLink to={"/countries-list"} className="nav_link">
               Countries List
-            </Link>
+            </NavLink>
           </Box>
+
           <Box sx={{ mr: 1 }}>
-            <Link to={"/login"} className="nav_link">
+            <NavLink to={"/login"} className="nav_link">
               Login
-            </Link>
+            </NavLink>
           </Box>
           <Box sx={{ mr: 1 }}>
-            <Link to={"/registration"} className="nav_link">
+            <NavLink to={"/registration"} className="nav_link">
               Registration
-            </Link>
+            </NavLink>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src="https://picsum.photos/200/200" />
               </IconButton>
             </Tooltip>
             <Menu
