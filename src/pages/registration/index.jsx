@@ -8,6 +8,7 @@ import { alpha, styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import useValidation from "../../customHooks/useValidation";
 
 const ValidationTextField = styled(TextField)({
   "& input:valid + fieldset": {
@@ -25,6 +26,7 @@ const ValidationTextField = styled(TextField)({
 });
 
 const Registration = () => {
+  const name = useValidation("", { isEmpty: true, minLength: 3 });
   return (
     <>
       <Header />
@@ -40,12 +42,21 @@ const Registration = () => {
           <h2>Registration</h2>
           <form>
             <Box mt={5} mb={5}>
+              {name.isDirty &&
+                name.isEmpaty &&
+                name.errorMessage("The field cannot be empty")}
+              {name.isDirty &&
+                name.minLengthError &&
+                name.errorMessage("Incorrect length")}
               <ValidationTextField
+                onChange={(e) => name.onChange(e)}
+                onBlur={(e) => name.onBlur(e)}
+                defaultValue={name.value}
+                sx={{ marginTop: 0.5 }}
                 name="name"
                 label="Name"
                 required
                 variant="outlined"
-                defaultValue=""
                 placeholder="Name"
                 fullWidth
               />
@@ -94,7 +105,7 @@ const Registration = () => {
               <Link to={"/login"} style={{ color: "tomato" }}>
                 Do you have an asunta?
               </Link>
-              <Button variant="contained" color="success">
+              <Button disabled={!name.inputValid} variant="contained" color="success">
                 Registration
               </Button>
             </Box>
