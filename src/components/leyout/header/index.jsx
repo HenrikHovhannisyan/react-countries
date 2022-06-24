@@ -13,12 +13,16 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import { Link, NavLink } from "react-router-dom";
+import {ThemeContext} from "../../../context/ThemeContext";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const theme = React.useContext(ThemeContext)
+
+  console.log(theme)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
