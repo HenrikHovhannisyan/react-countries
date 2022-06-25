@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import { Alert } from "@mui/material";
 
 const ErrorMessage = ({ message }) => {
@@ -9,4 +9,4 @@ const ErrorMessage = ({ message }) => {
     );
 };
 
-export default ErrorMessage;
+export default memo(ErrorMessage);

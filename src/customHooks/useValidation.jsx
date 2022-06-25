@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { EMAIL_REGEXP } from '../constants';
-import ErrorMessage from "../components/UI/ErrorMessage";
 
 const useValidation = (initialValue, validationsObjact) => {
 
@@ -64,8 +63,6 @@ const useValidation = (initialValue, validationsObjact) => {
     const onBlur = () => {
       setDirty(true);
     };
-
-    <ErrorMessage />
 
     return {
       value,
