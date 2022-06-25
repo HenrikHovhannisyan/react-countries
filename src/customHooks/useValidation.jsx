@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Alert } from "@mui/material";
+import { EMAIL_REGEXP } from '../constants';
+import ErrorMessage from "../components/UI/ErrorMessage";
 
 const useValidation = (initialValue, validationsObjact) => {
-    
+
   const useValidations = (value, validations) => {
-    const [isEmpaty, setEmpaty] = useState(true);
+    const [emptyError, setEmptyError] = useState(true);
     const [minLengthError, setMinLengthError] = useState(false);
     const [maxLengthError, setMaxLengthError] = useState(false);
     const [emailError, setEmailError] = useState(false);
-    const [inputValid, setInputValid] = useState(false);
+    const [isInputValid, setIsInputValid] = useState(false);
 
     useEffect(() => {
       for (const validation in validations) {
@@ -24,31 +25,30 @@ const useValidation = (initialValue, validationsObjact) => {
               : setMaxLengthError(false);
             break;
           case "isEmpty":
-            value ? setEmpaty(false) : setEmpaty(true);
+            value ? setEmptyError(false) : setEmptyError(true);
             break;
           case "isEmail":
-            const re =
-              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            re.test(String(value).toLowerCase())
+            EMAIL_REGEXP.test(String(value).toLowerCase())
               ? setEmailError(false)
               : setEmailError(true);
             break;
+            default: break;
         }
       }
-    }, [value]);
+    }, [value, validations]);
 
     useEffect(() => {
-      isEmpaty || maxLengthError || maxLengthError || emailError
-        ? setInputValid(false)
-        : setInputValid(true);
-    }, [isEmpaty, maxLengthError, minLengthError, emailError]);
+      emptyError || maxLengthError || maxLengthError || emailError
+        ? setIsInputValid(false)
+        : setIsInputValid(true);
+    }, [emptyError, maxLengthError, minLengthError, emailError]);
 
     return {
-      isEmpaty,
+      emptyError,
       minLengthError,
       maxLengthError,
       emailError,
-      inputValid,
+      isInputValid,
     };
   };
 
@@ -61,17 +61,11 @@ const useValidation = (initialValue, validationsObjact) => {
       setValue(e.target.value);
     };
 
-    const onBlur = (e) => {
+    const onBlur = () => {
       setDirty(true);
     };
 
-    const errorMessage = (message) => {
-      return (
-        <Alert severity="error" sx={{ marginBottom: 0.5 }}>
-          {message}
-        </Alert>
-      );
-    };
+    <ErrorMessage />
 
     return {
       value,
@@ -79,7 +73,6 @@ const useValidation = (initialValue, validationsObjact) => {
       ...valid,
       onChange,
       onBlur,
-      errorMessage,
     };
   };
 

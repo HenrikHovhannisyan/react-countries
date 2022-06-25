@@ -1,14 +1,15 @@
 import "./login.scss";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Header from "../../components/leyout/header";
 import Footer from "../../components/leyout/footer";
 import { Container } from "@mui/system";
-import { Alert, Box } from "@mui/material";
-import { alpha, styled } from "@mui/material/styles";
+import { Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import useValidation from "../../customHooks/useValidation";
+import ErrorMessage from "../../components/UI/ErrorMessage";
 
 const ValidationTextField = styled(TextField)({
   "& input:valid + fieldset": {
@@ -50,13 +51,13 @@ const Login = () => {
             <Box mt={5} mb={5}>
               {mail.isDirty &&
                 mail.isEmpaty &&
-                mail.errorMessage("The field cannot be empty")}
+                <ErrorMessage message={"The field cannot be empty"} />}
               {mail.isDirty &&
                 mail.minLengthError &&
-                mail.errorMessage("Incorrect length")}
+                <ErrorMessage message={"Incorrect length"} />}
               {mail.isDirty &&
                 mail.emailError &&
-                mail.errorMessage("Incorrect email")}
+                <ErrorMessage message={"Incorrect email"} />}
               <ValidationTextField
                 onChange={(e) => mail.onChange(e)}
                 onBlur={(e) => mail.onBlur(e)}
@@ -74,13 +75,13 @@ const Login = () => {
             <Box mt={5} mb={5}>
               {pass.isDirty &&
                 pass.isEmpaty &&
-                pass.errorMessage("The field cannot be empty")}
+                <ErrorMessage message={"The field cannot be empty"} />}
               {pass.isDirty &&
                 pass.minLengthError &&
-                pass.errorMessage("Incorrect length")}
+                <ErrorMessage message={"Incorrect length"} />}
               {pass.isDirty &&
                 pass.maxLengthError &&
-                pass.errorMessage("Too long password")}
+                <ErrorMessage message={"Too long password"} />}
               <ValidationTextField
                 onChange={(e) => pass.onChange(e)}
                 onBlur={(e) => pass.onBlur(e)}
