@@ -6,7 +6,10 @@ export const ColorContext = ({ children }) => {
   const [isTheme, setIsTheme] = useState(false);
 
   return (
-    <ThemeContext.Provider value={isTheme}>
+    <ThemeContext.Provider value={{
+      isTheme,
+      setIsTheme
+    }}>
         {children}
     </ThemeContext.Provider>
   );

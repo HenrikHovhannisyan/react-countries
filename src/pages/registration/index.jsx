@@ -4,11 +4,13 @@ import Header from "../../components/leyout/header";
 import Footer from "../../components/leyout/footer";
 import { Container } from "@mui/system";
 import { Box } from "@mui/material";
-import { alpha, styled } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import ErrorMessage from "../../components/UI/ErrorMessage";
 import useValidation from "../../customHooks/useValidation";
+import { useCallback } from "react";
 
 const ValidationTextField = styled(TextField)({
   "& input:valid + fieldset": {
@@ -27,6 +29,10 @@ const ValidationTextField = styled(TextField)({
 
 const Registration = () => {
   const name = useValidation("", { isEmpty: true, minLength: 3 });
+
+  const handleChange = useCallback((e) => name.onChange(e), [name]);
+  const handleBlur = useCallback((e) => name.onBlur(e), [name]);
+
   return (
     <>
       <Header />
@@ -43,14 +49,14 @@ const Registration = () => {
           <form>
             <Box mt={5} mb={5}>
               {name.isDirty &&
-                name.isEmpaty &&
-                name.errorMessage("The field cannot be empty")}
+                name.emptyError &&
+                <ErrorMessage message={"The field cannot be empty"} />}
               {name.isDirty &&
                 name.minLengthError &&
-                name.errorMessage("Incorrect length")}
+                <ErrorMessage message={"Incorrect length"} />}
               <ValidationTextField
-                onChange={(e) => name.onChange(e)}
-                onBlur={(e) => name.onBlur(e)}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 defaultValue={name.value}
                 sx={{ marginTop: 0.5 }}
                 name="name"
@@ -105,7 +111,7 @@ const Registration = () => {
               <Link to={"/login"} style={{ color: "tomato" }}>
                 Do you have an asunta?
               </Link>
-              <Button disabled={!name.inputValid} variant="contained" color="success">
+              <Button disabled={!name.isInputValid} variant="contained" color="success">
                 Registration
               </Button>
             </Box>

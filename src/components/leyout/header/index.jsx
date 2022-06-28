@@ -13,16 +13,15 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import { Link, NavLink } from "react-router-dom";
-import {ThemeContext} from "../../../context/ThemeContext";
+import Button from '@mui/material/Button';
+import { ThemeContext } from "../../../context/ThemeContext";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const theme = React.useContext(ThemeContext)
-
-  console.log(theme)
+  const {isTheme,setIsTheme} = React.useContext(ThemeContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -123,6 +122,9 @@ const Header = () => {
             <NavLink to={"/countries-list"} className="nav_link">
               Countries List
             </NavLink>
+          </Box>
+          <Box sx={{ mr: 1 }}>
+            <Button onClick={() => setIsTheme(pre => !pre)} variant="outlined">{!isTheme ? 'Light ' : 'Night'}</Button>
           </Box>
 
           <Box sx={{ mr: 1 }}>
