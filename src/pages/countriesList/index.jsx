@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { fechCountries } from "../../components/api/fechCountries";
-import CountriesSearch from "./countriesSearch ";
+import CountriesSearch from "./countriesSearch";
 import CardInfo from "./cardInfo";
 import Loading from "../../components/loading";
 

@@ -13,15 +13,17 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import FlagCircleIcon from "@mui/icons-material/FlagCircle";
 import { Link, NavLink } from "react-router-dom";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { ThemeContext } from "../../../context/ThemeContext";
+import ModeNightIcon from "@mui/icons-material/ModeNight";
+import Brightness5Icon from "@mui/icons-material/Brightness5";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const {isTheme,setIsTheme} = React.useContext(ThemeContext);
+  const { isTheme, setIsTheme } = React.useContext(ThemeContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -45,24 +47,15 @@ const Header = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <FlagCircleIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Countries
-          </Typography>
+          <NavLink to="/" variant="h6" component="a">
+            <FlagCircleIcon
+              sx={{
+                display: { xs: "none", md: "flex" },
+                mr: 1,
+                color: "azure",
+              }}
+            />
+          </NavLink>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -99,32 +92,28 @@ const Header = () => {
               </MenuItem>
             </Menu>
           </Box>
-          <FlagCircleIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Countries
-          </Typography>
+          <NavLink to="/">
+            <FlagCircleIcon
+              sx={{
+                display: { xs: "flex", md: "none" },
+                mr: 1,
+                color: "azure",
+              }}
+            />
+          </NavLink>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <NavLink to={"/countries-list"} className="nav_link">
               Countries List
             </NavLink>
           </Box>
           <Box sx={{ mr: 1 }}>
-            <Button onClick={() => setIsTheme(pre => !pre)} variant="outlined">{!isTheme ? 'Light ' : 'Night'}</Button>
+            <Button onClick={() => setIsTheme((pre) => !pre)}>
+              {!isTheme ? (
+                <Brightness5Icon color="warning" />
+              ) : (
+                <ModeNightIcon />
+              )}
+            </Button>
           </Box>
 
           <Box sx={{ mr: 1 }}>
