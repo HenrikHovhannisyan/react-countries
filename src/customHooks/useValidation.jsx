@@ -37,7 +37,7 @@ const useValidation = (initialValue, validationsObjact) => {
     }, [value, validations]);
 
     useEffect(() => {
-      emptyError || maxLengthError || maxLengthError || emailError
+      emptyError || maxLengthError || minLengthError || emailError
         ? setIsInputValid(false)
         : setIsInputValid(true);
     }, [emptyError, maxLengthError, minLengthError, emailError]);

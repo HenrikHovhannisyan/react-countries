@@ -49,7 +49,7 @@ const Registration = () => {
           <form>
             <Box mt={5} mb={5}>
               {name.isDirty &&
-                name.isEmpaty &&
+                name.emptyError &&
                 <ErrorMessage message={"The field cannot be empty"} />}
               {name.isDirty &&
                 name.minLengthError &&
@@ -111,7 +111,7 @@ const Registration = () => {
               <Link to={"/login"} style={{ color: "tomato" }}>
                 Do you have an asunta?
               </Link>
-              <Button disabled={!name.inputValid} variant="contained" color="success">
+              <Button disabled={!name.isInputValid} variant="contained" color="success">
                 Registration
               </Button>
             </Box>
