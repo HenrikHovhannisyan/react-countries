@@ -6,6 +6,7 @@ import Login from "../pages/login";
 import Registration from "../pages/registration";
 import SingleCountry from "../pages/singleCountry";
 import { ThemeContext } from "../context/ThemeContext";
+import State from "../components/reactExamples/state";
 
 const RouteList = () => {
   const { isTheme } = useContext(ThemeContext);
@@ -18,14 +19,17 @@ const RouteList = () => {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/registration" element={<Registration />} />
-          <Route path="/countries-list" element={<CountriesList />} />
+          <Route path="/" element={<App/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/registration" element={<Registration/>} />
+          <Route path="/countries-list" element={<CountriesList/>} />
           <Route
             path="/single-country/:countryName"
-            element={<SingleCountry />}
+            element={<SingleCountry/>}
           />
+          <Route path="/lessons">
+            <Route path="state" element={<State/>} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
