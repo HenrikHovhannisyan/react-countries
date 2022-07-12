@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ColorContext, ThemeContext } from "./context/ThemeContext";
+import { ColorContext } from "./context/ThemeContext";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import RouteList from "./routes";
