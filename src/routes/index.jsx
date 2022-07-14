@@ -6,7 +6,8 @@ import Login from "../pages/login";
 import Registration from "../pages/registration";
 import SingleCountry from "../pages/singleCountry";
 import { ThemeContext } from "../context/ThemeContext";
-import State from "../components/reactExamples/state";
+import State from "../components/reactHooks/state";
+import Effect from "../components/reactHooks/effect";
 
 const RouteList = () => {
   const { isTheme } = useContext(ThemeContext);
@@ -27,8 +28,9 @@ const RouteList = () => {
             path="/single-country/:countryName"
             element={<SingleCountry/>}
           />
-          <Route path="/lessons">
+          <Route path="/hooks">
             <Route path="state" element={<State/>} />
+            <Route path="effect" element={<Effect/>} />
           </Route>
         </Routes>
       </BrowserRouter>
