@@ -16,14 +16,14 @@ const State = () => {
       <p>{count}</p>
       <button
         onClick={() => setCount((prevCount) => prevCount + 1)}
-        disabled={count >= 5 ? true : false}
+        disabled={count >= 5}
       >
         Increment +
       </button>
       <br />
       <button
         onClick={() => setCount((prevCount) => prevCount - 1)}
-        disabled={count <= 0 ? true : false}
+        disabled={count <= 0}
       >
         Decrement -
       </button>
