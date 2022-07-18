@@ -32,7 +32,7 @@ function Footer() {
                 aria-label="mailbox folders"
               >
                 <ListItem button>
-                  <Link to={"/lessons/state"}>
+                  <Link to={"/hooks/state"}>
                     <ListItemText primary="useState" />
                   </Link>
                 </ListItem>

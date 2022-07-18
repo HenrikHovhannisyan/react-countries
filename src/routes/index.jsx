@@ -27,7 +27,7 @@ const RouteList = () => {
             path="/single-country/:countryName"
             element={<SingleCountry/>}
           />
-          <Route path="/lessons">
+          <Route path="/hooks">
             <Route path="state" element={<State/>} />
           </Route>
         </Routes>
