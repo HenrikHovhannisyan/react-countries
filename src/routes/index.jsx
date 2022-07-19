@@ -7,7 +7,9 @@ import Registration from "../pages/registration";
 import SingleCountry from "../pages/singleCountry";
 import { ThemeContext } from "../context/ThemeContext";
 import State from "../components/reactHooks/state";
+
 import Effect from "../components/reactHooks/effect";
+
 
 const RouteList = () => {
   const { isTheme } = useContext(ThemeContext);
