@@ -38,12 +38,14 @@ function Footer() {
                 </ListItem>
                 <Divider />
                 <ListItem button divider>
-                  <Link to={"/countries-list"}>
-                    <ListItemText primary="Countries List" />
+                  <Link to={"/hooks/effect"}>
+                    <ListItemText primary="useEffect" />
                   </Link>
                 </ListItem>
                 <ListItem button>
-                  <ListItemText primary="Blog" />
+                  <Link to={"/countries-list"}>
+                    <ListItemText primary="Countries List" />
+                  </Link>
                 </ListItem>
               </List>
             </Grid>
