@@ -8,6 +8,8 @@ import SingleCountry from "../pages/singleCountry";
 import { ThemeContext } from "../context/ThemeContext";
 import State from "../components/reactHooks/state";
 import Effect from "../components/reactHooks/effect";
+import Context from "../components/reactHooks/context";
+
 
 const RouteList = () => {
   const { isTheme } = useContext(ThemeContext);
@@ -31,6 +33,7 @@ const RouteList = () => {
           <Route path="/hooks">
             <Route path="state" element={<State/>} />
             <Route path="effect" element={<Effect/>} />
+            <Route path="context" element={<Context/>} />
           </Route>
         </Routes>
       </BrowserRouter>
