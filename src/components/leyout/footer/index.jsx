@@ -47,6 +47,11 @@ function Footer() {
                     <ListItemText primary="useContext" />
                   </Link>
                 </ListItem>
+                <ListItem button divider>
+                  <Link to={"/hooks/ref"}>
+                    <ListItemText primary="useRef" />
+                  </Link>
+                </ListItem>
                 <ListItem button>
                   <Link to={"/countries-list"}>
                     <ListItemText primary="Countries List" />
