@@ -1,8 +1,8 @@
 import "./singleCountry.scss";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Header from "../../components/leyout/header";
-import Footer from "../../components/leyout/footer";
+import Header from "../../components/layout/header";
+import Footer from "../../components/layout/footer";
 import { Container } from "@mui/system";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";

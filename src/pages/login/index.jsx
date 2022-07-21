@@ -1,7 +1,7 @@
 import "./login.scss";
 import React from "react";
-import Header from "../../components/leyout/header";
-import Footer from "../../components/leyout/footer";
+import Header from "../../components/layout/header";
+import Footer from "../../components/layout/footer";
 import { Container } from "@mui/system";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";

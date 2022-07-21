@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Container } from "@mui/system";
-import Footer from "../leyout/footer";
-import Header from "../leyout/header";
+import Footer from "../layout/footer";
+import Header from "../layout/header";
 
 const Ref = () => {
   const [count, setCount] = useState(0);
