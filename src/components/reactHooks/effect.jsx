@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../leyout/footer";
-import Header from "../leyout/header";
+import Footer from "../layout/footer";
+import Header from "../layout/header";
 import { postsList } from "../api/postsList";
 
 import { Container } from "@mui/system";

@@ -1,8 +1,8 @@
 import "./countriesList.scss";
 import React, { useEffect, useState } from "react";
 import { Container } from "@mui/system";
-import Footer from "../../components/leyout/footer";
-import Header from "../../components/leyout/header";
+import Footer from "../../components/layout/footer";
+import Header from "../../components/layout/header";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";

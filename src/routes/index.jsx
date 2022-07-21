@@ -7,13 +7,13 @@ import Registration from "../pages/registration";
 import SingleCountry from "../pages/singleCountry";
 import { ThemeContext } from "../context/ThemeContext";
 import State from "../components/reactHooks/state";
-
 import Effect from "../components/reactHooks/effect";
-
+import Context from "../components/reactHooks/context";
+import Ref from "../components/reactHooks/ref";
 
 const RouteList = () => {
   const { isTheme } = useContext(ThemeContext);
-  
+
   return (
     <div
       style={
@@ -22,17 +22,19 @@ const RouteList = () => {
     >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/registration" element={<Registration/>} />
-          <Route path="/countries-list" element={<CountriesList/>} />
+          <Route path="/" element={<App />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/registration" element={<Registration />} />
+          <Route path="/countries-list" element={<CountriesList />} />
           <Route
             path="/single-country/:countryName"
-            element={<SingleCountry/>}
+            element={<SingleCountry />}
           />
           <Route path="/hooks">
-            <Route path="state" element={<State/>} />
-            <Route path="effect" element={<Effect/>} />
+            <Route path="state" element={<State />} />
+            <Route path="effect" element={<Effect />} />
+            <Route path="context" element={<Context />} />
+            <Route path="ref" element={<Ref />} />
           </Route>
         </Routes>
       </BrowserRouter>

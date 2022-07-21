@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Footer from "../leyout/footer";
-import Header from "../leyout/header";
+import Footer from "../layout/footer";
+import Header from "../layout/header";
 
 const State = () => {
   const [count, setCount] = useState(0);
