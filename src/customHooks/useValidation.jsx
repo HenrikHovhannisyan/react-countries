@@ -31,13 +31,13 @@ const useValidation = (initialValue, validationsObjact) => {
               ? setEmailError(false)
               : setEmailError(true);
             break;
-            default: break;
+          default: break;
         }
       }
     }, [value, validations]);
 
     useEffect(() => {
-      emptyError || maxLengthError || minLengthError || emailError
+      emptyError || maxLengthError || maxLengthError || emailError
         ? setIsInputValid(false)
         : setIsInputValid(true);
     }, [emptyError, maxLengthError, minLengthError, emailError]);
