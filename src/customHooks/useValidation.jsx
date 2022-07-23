@@ -31,7 +31,7 @@ const useValidation = (initialValue, validationsObjact) => {
               ? setEmailError(false)
               : setEmailError(true);
             break;
-            default: break;
+          default: break;
         }
       }
     }, [value, validations]);

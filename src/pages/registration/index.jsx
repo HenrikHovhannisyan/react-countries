@@ -1,7 +1,7 @@
 import "./registration.scss";
 import React from "react";
-import Header from "../../components/leyout/header";
-import Footer from "../../components/leyout/footer";
+import Header from "../../components/layout/header";
+import Footer from "../../components/layout/footer";
 import { Container } from "@mui/system";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -49,7 +49,7 @@ const Registration = () => {
           <form>
             <Box mt={5} mb={5}>
               {name.isDirty &&
-                name.isEmpaty &&
+                name.emptyError &&
                 <ErrorMessage message={"The field cannot be empty"} />}
               {name.isDirty &&
                 name.minLengthError &&
@@ -111,7 +111,7 @@ const Registration = () => {
               <Link to={"/login"} style={{ color: "tomato" }}>
                 Do you have an asunta?
               </Link>
-              <Button disabled={!name.inputValid} variant="contained" color="success">
+              <Button disabled={!name.isInputValid} variant="contained" color="success">
                 Registration
               </Button>
             </Box>
