@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -72,4 +72,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default memo(Footer);
