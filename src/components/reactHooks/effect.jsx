@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, memo } from "react";
 import Footer from "../layout/footer";
 import Header from "../layout/header";
 import { postsList } from "../api/postsList";
@@ -12,10 +12,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
+const MemoContainer = memo(Container);
+
 const Effect = () => {
   const [list, setList] = useState([]);
   const [isFetch, setIsFetch] = useState(false);
-  const [isExample, setisExample] = useState(false);
+  const [isExample, setIsExample] = useState(false);
 
   useEffect(() => {
     console.log("Effect");
@@ -24,13 +26,15 @@ const Effect = () => {
     }
   }, [isFetch]);
 
+  const handleFetch = useCallback(() => setIsFetch((pre) => !pre), [setIsFetch]);
+  const handleExample = useCallback(() => setIsExample((pre) => !pre), [setIsExample])
+
   return (
     <div>
       <Header />
-      <Container maxWidth="xl" sx={{ height: "100vh" }}>
-        <button onClick={() => setIsFetch((pre) => !pre)}> fetch Posts</button>
-        <button onClick={() => setisExample((pre) => !pre)}>
-          {" "}
+      <MemoContainer maxWidth="xl" sx={{ height: "100vh" }}>
+        <button onClick={handleFetch}> fetch Posts</button>
+        <button onClick={handleExample}>
           Example Click
         </button>
         <p>{isExample ? "True" : "False"}</p>
@@ -58,7 +62,7 @@ const Effect = () => {
             </TableBody>
           </Table>
         </TableContainer>
-      </Container>
+      </MemoContainer>
       <Footer />
     </div>
   );
